@@ -2,18 +2,17 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 
-// Variáveis para o SDL...
+// Variï¿½veis para o SDL...
 SDL_Window* window;
-SDL_Renderer* renderer;
 SDL_GLContext glcontext;
 int isgamerunning;
 
-// Posição do quadrado...
+// Posiï¿½ï¿½o do quadrado...
 float POS_X, POS_Y;
 float ANGLE;
 
-// Uma variável constante para ser a minha
-// velocidade comum, outra para uma acel. centrípeta comum.
+// Uma variï¿½vel constante para ser a minha
+// velocidade comum, outra para uma acel. centrï¿½peta comum.
 const float speed  = 10.0f;
 const float c_acc  = 5.0f;
 // Tamanho da METADE de um lado do quadrado.
@@ -34,20 +33,13 @@ int main(int argc, char** argv)
 		printf("Error: %s\n", SDL_GetError());
 		return 1;
 	}
-	// Inicialize o renderizador e verifique erros
-	renderer = SDL_CreateRenderer(window, -1, 0);
-	if(!renderer)
-	{
-		printf("Error: %s\n", SDL_GetError());
-		return 2;
-	}
 
 	/* INICIALIZANDO O OPENGL */
 	// Force o sistema a utilizar OpenGL e crie um contexto para tal
-	// (se não especificado, no Windows, seria usado DirectX)
+	// (se nï¿½o especificado, no Windows, seria usado DirectX)
 	glcontext = SDL_GL_CreateContext(window);
 
-	// Faça com que a projeção seja um plano cartesiano de 800x600, com o
+	// Faï¿½a com que a projeï¿½ï¿½o seja um plano cartesiano de 800x600, com o
 	// eixo Y crescente PARA BAIXO.
 	glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
@@ -59,35 +51,35 @@ int main(int argc, char** argv)
 
 
 	/* INICIALIZANDO DADOS GERAIS */
-	// Defina a posição inicial como (100, 100)
+	// Defina a posiï¿½ï¿½o inicial como (100, 100)
 	POS_X = POS_Y = 100.0f;
-	// Defina ângulo inicial como 0 graus.
+	// Defina ï¿½ngulo inicial como 0 graus.
 	ANGLE = 0.0f;
-	// Defina que o jogo rodará.
+	// Defina que o jogo rodarï¿½.
 	isgamerunning = 1;
 
 
-	/* ROTINA DE REPETIÇÃO */
+	/* ROTINA DE REPETIï¿½ï¿½O */
 	while(isgamerunning)
 	{
 		// Primeiramente, vamos lidar com o input.
 		SDL_Event event;
 		// Execute enquanto houver algum evento de
-		// interação na fila de interações do quadro
+		// interaï¿½ï¿½o na fila de interaï¿½ï¿½es do quadro
 		// atual do jogo. 
 		while(SDL_PollEvent(&event))
 		{
-			// Há vários tipos de eventos...
+			// Hï¿½ vï¿½rios tipos de eventos...
 			switch(event.type)
 			{
-			// Se o programa recebeu um sinal de saída
-			// (a janela foi fechada), então saia.
+			// Se o programa recebeu um sinal de saï¿½da
+			// (a janela foi fechada), entï¿½o saia.
 			case SDL_QUIT:
 				isgamerunning = 0;
 				break;
-			// Se o usuário apertou uma tecla...
+			// Se o usuï¿½rio apertou uma tecla...
 			case SDL_KEYDOWN:
-				// ...há várias teclas...
+				// ...hï¿½ vï¿½rias teclas...
 				switch(event.key.keysym.sym)
 				{
 				// Se foi ESC, saia do programa.
@@ -95,14 +87,14 @@ int main(int argc, char** argv)
 					isgamerunning = 0;
 					break;
 				// Se foi esquerda ou direita, aumente ou
-				// diminua a posição X do quadrado a rigor!
+				// diminua a posiï¿½ï¿½o X do quadrado a rigor!
 				case SDLK_LEFT:
 					POS_X -= speed;
 					break;
 				case SDLK_RIGHT:
 					POS_X += speed;
 					break;
-				// Faça algo parecido para o eixo Y
+				// Faï¿½a algo parecido para o eixo Y
 				case SDLK_UP:
 					POS_Y -= speed;
 					break;
@@ -110,7 +102,7 @@ int main(int argc, char** argv)
 					POS_Y += speed;
 					break;
 
-				// Q e E vão rotacionar o quadrado.
+				// Q e E vï¿½o rotacionar o quadrado.
 				case SDLK_q:
 					ANGLE -= c_acc;
 					break;
@@ -126,7 +118,7 @@ int main(int argc, char** argv)
 			} // Fim do primeiro switch.
 		} // Fim do loop de eventos.
 
-		// O ângulo do quadrado deverá ficar sempre entre 0 e 360, para
+		// O ï¿½ngulo do quadrado deverï¿½ ficar sempre entre 0 e 360, para
 		// evitar transtornos.
 		if(ANGLE > 360.0f) ANGLE -= 360.0f;
 		else if(ANGLE < 0.0f) ANGLE += 360.0f;
@@ -134,44 +126,43 @@ int main(int argc, char** argv)
 
 		/* DESENHANDO O QUADRADO NA TELA */
 		// Apague o quadro anterior para nos livrar de rastros/lixo.
-		// Esses rastros são chamados de "artifacts".
+		// Esses rastros sï¿½o chamados de "artifacts".
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		// Evite que outras coisas já impressas na matrix
+		// Evite que outras coisas jï¿½ impressas na matrix
 		// sejam alteradas, empilhando-a.
 		glPushMatrix();
-		// Mova a origem do plano para a posição do quadrado.
+		// Mova a origem do plano para a posiï¿½ï¿½o do quadrado.
 		glTranslatef(POS_X, POS_Y, 0.0f);
-		// Rotacione o quadrado para o ângulo em que ele está.
+		// Rotacione o quadrado para o ï¿½ngulo em que ele estï¿½.
 		glRotatef(ANGLE, 0.0f, 0.0f, 1.0f);
 
 		// Aplique a cor vermelha no quadrado
 		glColor3f(1.0f, 0.0f, 0.0f);
 
 		// Desenhe o quadrado, utilizando um QUAD: basicamente
-		// um quadrado composto de dois triângulos. Isso facilita
-		// texturização
+		// um quadrado composto de dois triï¿½ngulos. Isso facilita
+		// texturizaï¿½ï¿½o
 		glBegin(GL_QUADS);
-			// Vértices do quadrado.
+			// Vï¿½rtices do quadrado.
 			glVertex2f(-half_size, -half_size);
 			glVertex2f(half_size, -half_size);
 			glVertex2f(half_size, half_size);
 			glVertex2f(-half_size, half_size);
-		// Termine a inserção de vértices
+		// Termine a inserï¿½ï¿½o de vï¿½rtices
 		glEnd();
-	// Retorne a matrix anterior para seu lugar e aplique as alterações
+	// Retorne a matrix anterior para seu lugar e aplique as alteraï¿½ï¿½es
 	glPopMatrix();
 
-	// Por fim, faça com que as alterações sejam DE FATO desenhadas
+	// Por fim, faï¿½a com que as alteraï¿½ï¿½es sejam DE FATO desenhadas
 	// na tela.
 	SDL_GL_SwapWindow(window);
 
 	} // Fim do while(isgamerunning)
 
-	// Se o programa chegou até aqui, isso significa que devemos fechá-lo,
+	// Se o programa chegou atï¿½ aqui, isso significa que devemos fechï¿½-lo,
 	// destruindo nossas janelas, contextos e etc.
 	SDL_GL_DeleteContext(glcontext);
-	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
 
