@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Name />
+    <AssemblyName>fsGame</AssemblyName>
+    <RootNamespace>fsGame</RootNamespace>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <SchemaVersion />
+    <ProjectGuid>89494324-2f70-460a-a594-b410cd3ccb06</ProjectGuid>
+    <ProjectType />
+    <OutputType>Exe</OutputType>
+    <TargetFrameworkVersion />
+    <TargetFrameworkProfile />
+    <AutoGenerateBindingRedirects />
+    <TargetFSharpCoreVersion />
+    <DocumentationFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType />
+    <Optimize />
+    <Tailcalls />
+    <OutputPath>bin\Debug</OutputPath>
+    <CompilationConstants />
+    <WarningLevel />
+    <PlatformTarget />
+    <Prefer32Bit />
+    <OtherFlags />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugSymbols />
+    <DebugType />
+    <Optimize />
+    <Tailcalls />
+    <OutputPath>bin\Release</OutputPath>
+    <CompilationConstants />
+    <WarningLevel />
+    <PlatformTarget />
+    <Prefer32Bit />
+    <OtherFlags />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="FSharp.Core" />
+    <Reference Include="Lidgren.Network">
+      <HintPath>..\..\..\..\..\..\opt\MonoGameSDK\Assemblies\DesktopGL\Lidgren.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\..\..\..\..\..\opt\MonoGameSDK\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework.Net">
+      <HintPath>..\..\..\..\..\..\opt\MonoGameSDK\Assemblies\DesktopGL\MonoGame.Framework.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NVorbis">
+      <HintPath>..\..\..\..\..\..\opt\MonoGameSDK\Assemblies\DesktopGL\NVorbis.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK">
+      <HintPath>..\..\..\..\..\..\opt\MonoGameSDK\Assemblies\DesktopGL\OpenTK.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="GameManager.fs" />
+    <Compile Include="Program.fs" />
+    <Compile Include="LevelScreen.fs" />
+    <Compile Include="PlatformerGame.fs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets" />
+</Project>
