@@ -13,11 +13,20 @@ module Stack
     
     let pop stack =
         match stack with
-        | EmptyStack -> failwith "Pilha vazia!"
+        | EmptyStack ->
+            failwith "Empty stack; cannot pop"
         | StackNode(head, tail) -> tail
     
     let top stack =
         match stack with
-        | EmptyStack -> failwith "Pilha vazia!"
+        | EmptyStack ->
+            failwith "Empty stack; cannot check top"
         | StackNode(head, tail) -> head
 
+    let fromCollection collection =
+        let mutable bufstack = EmptyStack
+        for a in collection do
+            bufstack <- bufstack |> push a
+        match bufstack with
+        | EmptyStack -> EmptyStack
+        | StackNode(head, tail) -> StackNode(head, tail)
