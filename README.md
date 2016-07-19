@@ -58,3 +58,7 @@ Some kind of encryptor/decryptor. Won't work with all characters, so you might g
 
 Small example of an unfolding Fibonacci sequence on a Seq structure, written in
 F# script.
+
+### pqp
+
+A little whatever script I made for joke purposes. Basically generates a random swearing dialogue.
