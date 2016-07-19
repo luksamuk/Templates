@@ -29,7 +29,7 @@ and DirectX, with SDL1.2 and SDL2.
 
 Contains an example for building a basic OpenGL application, using DerelictSDL2.
 
-### F\#
+### FSharp
 
 Contains an example for building a basic MonoGame application, on F# language.
 
