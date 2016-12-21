@@ -13,11 +13,11 @@ void GameScreen::load() {
     vao.bind();
 
     float vertices[] = {
-        //  Vertices       Colors             Texcoords
-        -0.5f,  0.5f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f,
-         0.5f,  0.5f,  1.0f, 1.0f, 1.0f,  1.0f, 0.0f,
-         0.5f, -0.5f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f,
-        -0.5f, -0.5f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f
+        //  Vertices         Colors              Texcoords
+        -0.5f,  0.5f, 0.0f,  1.0f, 1.0f, 1.0f,   0.0f, 0.0f,
+         0.5f,  0.5f, 0.0f,  1.0f, 1.0f, 1.0f,   1.0f, 0.0f,
+         0.5f, -0.5f, 0.0f,  1.0f, 1.0f, 1.0f,   1.0f, 1.0f,
+        -0.5f, -0.5f, 0.0f,  1.0f, 1.0f, 1.0f,   0.0f, 1.0f
     };
 
     vbo.setData(sizeof(vertices), vertices, ofBufferStaticDraw);
@@ -35,13 +35,13 @@ void GameScreen::load() {
     attrColor.enable();
     attrTexcoord.enable();
 
-    attrPosition.setProps(2, ofDataFloat, 7 * sizeof(float));
-    attrColor.setProps(3, ofDataFloat, 7 * sizeof(float));
-    attrTexcoord.setProps(2, ofDataFloat, 7 * sizeof(float));
+    attrPosition.setProps(3, ofDataFloat, 8 * sizeof(float));
+    attrColor.setProps(3, ofDataFloat, 8 * sizeof(float));
+    attrTexcoord.setProps(2, ofDataFloat, 8 * sizeof(float));
 
     attrPosition.bindVertexArrayData(0);
-    attrColor.bindVertexArrayData((void*)(2 * sizeof(float)));
-    attrTexcoord.bindVertexArrayData((void*)(5 * sizeof(float)));
+    attrColor.bindVertexArrayData((void*)(3 * sizeof(float)));
+    attrTexcoord.bindVertexArrayData((void*)(6 * sizeof(float)));
 
     uniMVP = shaderProgram.getUniformLocation("mvp");
     uniTex = shaderProgram.getUniformLocation("tex");
